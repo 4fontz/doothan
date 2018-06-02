@@ -1,0 +1,20 @@
+2014-10-24  Marc Busqué  <marc@lamarciana.com>
+
+* Version 1.1.4 Update only order field to allow behaviours
+
+2013-12-20  Marc Busqué  <marc@lamarciana.com>
+
+* Version 1.1.2 Add table prefix to order field in query
+
+2012-07-31  Marc Busqué  <marc@lamarciana.com>
+
+* Version 1.1.1 CGridView works with Csrf Validation
+
+2012-07-31  Marc Busqué  <marc@lamarciana.com>
+
+* Version 1.1. Add SortableCActiveBehavior, to allow working with custom
+models and attach them sortable functionality.
+
+2012-07-04  Marc Busqué  <marc@lamarciana.com>
+
+* Initial release
