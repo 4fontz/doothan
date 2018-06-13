@@ -320,55 +320,71 @@
       	</div>
         </section>
       </div>
-      <div class="nav-tabs-custom">
+      <!--<div class="nav-tabs-custom">
         <ul class="nav nav-tabs pull-right">
           <li class="pull-left header"><i class="fa fa-inbox"></i>Users and documents</li>
         </ul>
       </div>
       <div class="box">
-        <?php echo $this->renderPartial('users_docs',array('User_model'=>$User_model));?>
-      </div>
+        <?php //echo $this->renderPartial('users_docs',array('User_model'=>$User_model));?>
+      </div>-->
       
     </section>   
 <style>
 .products-list .product-img img{width: 30px;height: 30px;}
 </style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA7IZt-36CgqSGDFK8pChUdQXFyKIhpMBY" type="text/javascript"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+  $('#display_content').html('<img src=<?php echo Yii::app()->request->baseUrl; ?>/images/loading.gif>').css({'color':'red'});
+	var value = "requester";
+	$.ajax({
+		type:'POST',
+		dataType:'html',
+		data:{'value':value},
+		url:'<?php echo Yii::app()->createAbsoluteUrl("dashboard/loadmap"); ?>',
+		success:function(response){
+			$('#display_content').html(response);
+			//window.location.reload();
+		},error: function(jqXHR, textStatus, errorThrown) {
+			//window.location.reload();
+    }
+	})
+});
 //var markers = [{"title":"trissur","lat":"10.5153293","lng":"76.2044683","description":"haiiikadsjsalkjdhakdhakjdhakdhakshdadakdakjdkajdkasjdhksajhdaksjdhaksdjdhkjsadhakjh"},{"title":"Kottayam","lat":"9.591566799999999","lng":"76.52215309999997"},{"title":"Thiruvananthapuram","lat":"8.5241391","lng":"76.93663760000004"}];
-var markers = <?php echo json_encode($all_user_address);?>;
-window.onload = function () {
-var mapOptions = {
-center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
-zoom: 10,
-mapTypeId: google.maps.MapTypeId.ROADMAP
-};
-var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
-var infoWindow = new google.maps.InfoWindow();
-var lat_lng = new Array();
-var latlngbounds = new google.maps.LatLngBounds();
-for (i = 0; i < markers.length; i++) {
-var data = markers[i]
-var myLatlng = new google.maps.LatLng(data.lat, data.lng);
-lat_lng.push(myLatlng);
-var marker = new google.maps.Marker({
-position: myLatlng,
-map: map,
-title: data.title,
-});
-latlngbounds.extend(marker.position);
-(function (marker, data) {
-google.maps.event.addListener(marker, "click", function (e) {
-infoWindow.setContent(data.description);
-infoWindow.open(map, marker);
-});
-})(marker, data);
-}
-map.setCenter(latlngbounds.getCenter());
-map.fitBounds(latlngbounds);
+// var markers = <?php //echo json_encode($all_user_address);?>;
+// window.onload = function () {
+// var mapOptions = {
+// center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
+// zoom: 10,
+// mapTypeId: google.maps.MapTypeId.ROADMAP
+// };
+// var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+// var infoWindow = new google.maps.InfoWindow();
+// var lat_lng = new Array();
+// var latlngbounds = new google.maps.LatLngBounds();
+// for (i = 0; i < markers.length; i++) {
+// var data = markers[i]
+// var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+// lat_lng.push(myLatlng);
+// var marker = new google.maps.Marker({
+// position: myLatlng,
+// map: map,
+// title: data.title,
+// });
+// latlngbounds.extend(marker.position);
+// (function (marker, data) {
+// google.maps.event.addListener(marker, "click", function (e) {
+// infoWindow.setContent(data.description);
+// infoWindow.open(map, marker);
+// });
+// })(marker, data);
+// }
+// map.setCenter(latlngbounds.getCenter());
+// map.fitBounds(latlngbounds);
 
-}
-
+// }
 function LoadMap(param){
 	$('#display_content').html('<img src=<?php echo Yii::app()->request->baseUrl; ?>/images/loading.gif>').css({'color':'red'});
 	value = $(param).val();

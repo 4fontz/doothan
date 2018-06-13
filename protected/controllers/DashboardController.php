@@ -33,33 +33,35 @@ class DashboardController extends Controller {
           //  $type = 'doothan';
         //}
         $type = 'requester';
-        $all_user_details = Users::model()->findAllByAttributes(array('member_type'=>$type,'status'=>2));
-        if(count($all_user_details)>0){
-            foreach($all_user_details as $all_user){
-                $singleAddress = UserAddress::model()->findByAttributes(array('user_id'=>$all_user['id']));
-                if(count($singleAddress)){
-                    $location = $singleAddress->city . ' ' . $singleAddress->state . ' ' . $singleAddress->postal_code;
-                    $geoLocation = Helper::getCoordinates($location);
-                    $lat = $geoLocation['lat'];
-                    $long = $geoLocation['long'];
-                    $user_info = $all_user['first_name']." ".$all_user['last_name'];
-                    $all_user_address[]=array(
-                        'title'=>$singleAddress->city,
-                        'lat'=>"$lat",
-                        'lng'=>"$long",
-                        'description'=>"<span style=color:#000;font-weight:bold;>$user_info</span><br><span style=color:#000;>$singleAddress->city<br>$singleAddress->state<br>$singleAddress->postal_code</span>"
-                    );
-                }
-            }
-        }
-        $User_model = new Users('search');
-        $User_model->unsetAttributes();  // clear any default values
-        $model->member_type != 'requester';
+        // $all_user_details = Users::model()->findAllByAttributes(array('member_type'=>$type,'status'=>2));
+        // if(count($all_user_details)>0){
+        //     foreach($all_user_details as $all_user){
+        //         $singleAddress = UserAddress::model()->findByAttributes(array('user_id'=>$all_user['id']));
+        //         if(count($singleAddress)){
+        //             $location = $singleAddress->city . ' ' . $singleAddress->state . ' ' . $singleAddress->postal_code;
+        //             $geoLocation = Helper::getCoordinates($location);
+        //             $lat = $geoLocation['lat'];
+        //             $long = $geoLocation['long'];
+        //             $user_info = $all_user['first_name']." ".$all_user['last_name'];
+        //             $all_user_address[]=array(
+        //                 'title'=>$singleAddress->city,
+        //                 'lat'=>"$lat",
+        //                 'lng'=>"$long",
+        //                 'description'=>"<span style=color:#000;font-weight:bold;>$user_info</span><br><span style=color:#000;>$singleAddress->city<br>$singleAddress->state<br>$singleAddress->postal_code</span>"
+        //             );
+        //         }
+        //     }
+        // }
+        $all_user_address[]= array();
+        // $User_model = new Users('search');
+        // $User_model->unsetAttributes();  // clear any default values
+        // $model->member_type != 'requester';
         if (isset($_GET['Users']))
             $User_model->attributes = $_GET['Users'];
-            $this->render('index',array('all_user_address'=>$all_user_address,'type'=>$type,'User_model' => $User_model,));
+            $this->render('index',array('all_user_address'=>$all_user_address,'type'=>$type));
     }
     public function actionLoadmap(){
+        ini_set('max_execution_time', 300); 
         $usertype = $_POST['value'];
       //  $_SESSION['user_type'] = $usertype;
         //echo $usertype;

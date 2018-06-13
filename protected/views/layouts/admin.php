@@ -33,8 +33,8 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <!-- map style -->
-  <link type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/vendor/dist/iCheck/jquery-jvectormap.css" rel="stylesheet" />
-  <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/vendor/dist/iCheck/all.css">
+  <!-- <link type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/vendor/dist/iCheck/jquery-jvectormap.css" rel="stylesheet" /> -->
+  <!-- <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/vendor/dist/iCheck/all.css"> -->
 </head>
 <script type="text/javascript">
 var Baseurl = '<?php echo Yii::app()->request->baseUrl; ?>';

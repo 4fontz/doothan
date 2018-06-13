@@ -69,7 +69,7 @@ return array(
         ),
         'db' => array(
             //'connectionString' => 'mysql:host=cloud9.crskpqcg2cxx.us-west-2.rds.amazonaws.com;dbname=cloud9_dev',
-            'connectionString' => 'mysql:host=localhost;dbname=doothan_prod',
+            'connectionString' => 'mysql:host=localhost;dbname=doothanprod',
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => '',
