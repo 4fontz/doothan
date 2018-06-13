@@ -58,7 +58,7 @@ CREATE TABLE `request` (
   `doothan_waiting_hours` int(11) DEFAULT '0',
   `device_token` varchar(250) DEFAULT NULL,
   `created_on` timestamp NULL DEFAULT NULL,
-  `updated_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_on` timestamp NOT NULL,
   `payment_date` datetime NOT NULL,
   `delivery_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
