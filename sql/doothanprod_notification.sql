@@ -32,7 +32,7 @@ CREATE TABLE `notification` (
   `queue_status` varchar(150) NOT NULL COMMENT '0-Queued,1-In Progress,2-Completed',
   `status` varchar(150) NOT NULL COMMENT '0-Pending,1-Sucess,Failed',
   `error_log` text NOT NULL,
-  `started_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `started_on` datetime NOT NULL DEFAULT now(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
