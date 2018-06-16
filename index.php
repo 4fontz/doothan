@@ -18,7 +18,7 @@ defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE | E_STRICT | E_DEPRECATED);
 error_reporting(E_ALL ^ E_NOTICE);
-ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+
 require_once($yii);
 Yii::createWebApplication($config)->run();
 

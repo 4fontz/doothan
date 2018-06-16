@@ -19,23 +19,10 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
-<div id="myModalContent" class="modal fade" role="dialog">
+<div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Feedback Text</h4>
-      </div>
-      <div class="modal-body" id="modal-body">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+    <div class="modal-content" id="modal-content">
     </div>
-
   </div>
 </div>
 <div class="box">
@@ -123,14 +110,14 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
             // 'value'=>'Yii::app()->dateFormatter->format("m/d/y",$data->created)',
             'htmlOptions' => array('style' => 'width: 15%')
         ),
-        array(
-            'name'=>'comments',
-            'header'=> 'Action',
-            'type' => 'raw',
-            'filter'=>'',
-            'value'=> array($model,'ViewMoreContent'),
-            'htmlOptions' => array('style' => 'width: 6%'),
-        ),
+        // array(
+        //     'name'=>'comments',
+        //     'header'=> 'Action',
+        //     'type' => 'raw',
+        //     'filter'=>'',
+        //     'value'=> array($model,'ViewMoreContent'),
+        //     'htmlOptions' => array('style' => 'width: 6%'),
+        // ),
         array(
             'name'=>'replay',
             'header'=> 'Replay',
@@ -146,6 +133,7 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
 
 <script type="text/javascript">
 function show_replay_form(param){
+    $('#modal-content').html(" ");
 	var id=$(param).attr('id');
 	type="0";
 	$.ajax({
@@ -154,7 +142,7 @@ function show_replay_form(param){
 		data:{'id':id,'type':type},
 		url:'<?php echo Yii::app()->createAbsoluteUrl("Feedback/Updatereplayform"); ?>',
 		success:function(response){
-			$('.modal-content').html(response);
+			$('#modal-content').html(response);
 		},error: function(jqXHR, textStatus, errorThrown) {
 			//window.location.reload();
         }
@@ -168,11 +156,6 @@ jQuery(function ($) {
    
 });
 
-
-function show_more_content(param){
-	text = $(param).attr('id');
-	$('#modal-body').html('<p>'+text+'</p>');
-} 
 window.setInterval(Getinterval, 5000);
 function Getinterval(tim){
 	var saved_time  = $('#time_frame').val();

@@ -37,7 +37,7 @@ class FeedbackController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','index','create','callback','StatusChange','Updatereplayform','Updatereplay','PageLoad'),
+				'actions'=>array('admin','Show_more','delete','index','create','callback','StatusChange','Updatereplayform','Updatereplay','PageLoad'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -220,6 +220,14 @@ class FeedbackController extends Controller
 	       $model = $this->loadModel($_POST['id']);
 
 	       $this->render('replay_form',array('model'=>$model,'type'=>$type));   
+	    }
+	}
+	public function actionShow_more(){
+		$this->layout=false;
+	    $type = $_POST['type'];
+	    if($_POST['id']){
+	       $model = $this->loadModel($_POST['id']);
+	       $this->render('show_more',array('model'=>$model,'type'=>$type));   
 	    }
 	}
 	public function actionUpdatereplay(){ 

@@ -138,7 +138,7 @@ class Feedback extends CActiveRecord
 	    echo $feedback;
 	}
 	public function ViewMoreContent($data){
-	    echo '<a href="javascript:void(0)" id="'.$data->feedback.'" data-toggle="modal" data-target="#myModalContent" class="btn btn-info btn-xs" onClick="show_more_content(this)">Show Feedback</a>';
+	    echo '<a href="javascript:void(0)" id="'.$data->id.'" data-toggle="modal" data-target="#myModalContent" class="btn btn-info btn-xs" onClick="show_more_content(this)">Show Feedback</a>';
 	}
 	public function UpdateComment($data){
 	    $comments_details = ( strlen($data->comments) > 30

@@ -6,10 +6,13 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
     <?php if($type=="1"){?>
         <div class="modal-header">
            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Reply to the callback request</h4>
+            <h4 class="modal-title">View & Reply to the callback request</h4>
         </div>
       	<div class="modal-body">    
             <div class="form-group">
+							<div class="form-group">	
+									<p><b>Callback : </b><?php echo $model->comments; ?></p>
+							</div>
               <div class="form-group">
                   <?php echo $form->labelEx($model,'comments'); ?>
                   <?php echo $form->textArea($model,'comments',array('class'=>'form-control','maxlength'=>200)); ?>
@@ -22,10 +25,13 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
   	<?php }else{?>
       	<div class="modal-header">
            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Replay to the feedback request</h4>
+            <h4 class="modal-title">View & Replay to the feedback request</h4>
         </div>
       	<div class="modal-body">    
             <div class="form-group">
+							<div class="form-group">
+						 		<p><b>Feedback : </b><?php echo $model->feedback; ?></p>
+						 	</div>
               <div class="form-group">
                   <?php echo $form->labelEx($model,'replay'); ?>
                   <?php echo $form->textArea($model,'replay',array('class'=>'form-control','maxlength'=>200)); ?>
