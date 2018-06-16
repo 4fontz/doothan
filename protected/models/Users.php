@@ -400,24 +400,28 @@ class Users extends CActiveRecord {
     public function AdharShow($data){
         if($data->aadhar){
             if(Yii::app()->params['adharImageBucketUrl'].$model->aadhar){
-                $aadhar_url=Yii::app()->params['adharImageBucketUrl'].$data->aadhar;
-                $link = '<a href='.$aadhar_url.' data-fancybox data-caption="Aadhar"><img src='.$aadhar_url.' alt="" style="width: 50px;height: 50px;"/></a>';
+               // $aadhar_url=Yii::app()->params['adharImageBucketUrl'].$data->aadhar;
+                $aadhar_url = Yii::app()->baseUrl."/images/success-tick.png";
+                $link = '<a href='.$aadhar_url.' data-fancybox data-caption="Aadhar"><img src='.$aadhar_url.' alt="" style="width: 20px;height: 20px;"/></a>';
             }
         }else{
-            $aadhar_url=Yii::app()->request->baseUrl.'/images/no-img.png';
-            $link = '<img src='.$aadhar_url.' alt="" style="width: 50px;height: 50px;"/>';
+            //$aadhar_url=Yii::app()->request->baseUrl.'/images/no-img.png';
+            $aadhar_url = Yii::app()->baseUrl."/images/close.png";
+            $link = '<img src='.$aadhar_url.' alt="" style="width: 20px;height: 20px;"/>';
         }
         return $link;
     }
     public function PhotoShow($data){
         if($data->photo_id){
             if(Yii::app()->params['photoImageBucketUrl'].$model->photo_id){
-                $photo_url=Yii::app()->params['photoImageBucketUrl'].$data->photo_id;
-                $link = '<a href='.$photo_url.' data-fancybox data-caption="Photo"><img src='.$photo_url.' alt="" style="width: 50px;height: 50px;"/></a>';;
+                //$photo_url=Yii::app()->params['photoImageBucketUrl'].$data->photo_id;
+                $photo_url = Yii::app()->baseUrl."/images/success-tick.png";
+                $link = '<a href='.$photo_url.' data-fancybox data-caption="Photo"><img src='.$photo_url.' alt="" style="width: 20px;height: 20px;"/></a>';;
             }
         }else{
-            $photo_url=Yii::app()->request->baseUrl.'/images/no-img.png';
-            $link = '<img src='.$photo_url.' alt="" style="width: 50px;height: 50px;"/>';
+            //$photo_url=Yii::app()->request->baseUrl.'/images/no-img.png';
+            $photo_url = Yii::app()->baseUrl."/images/close.png";
+            $link = '<img src='.$photo_url.' alt="" style="width: 20px;height: 20px;"/>';
         }
         return $link;
     }

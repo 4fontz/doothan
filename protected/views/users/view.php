@@ -116,6 +116,7 @@ $this->breadcrumbs = array(
               <li><a href="#feedback" data-toggle="tab">Feedback</a></li>
               <?php if ($basic_model->member_type != 'requester') {?>
               	<li><a href="#payments" data-toggle="tab">Payments</a></li>
+              	<li><a href="#docs" data-toggle="tab">Documents</a></li>
               <?php }?>
             </ul>
             <div class="tab-content">
@@ -134,6 +135,9 @@ $this->breadcrumbs = array(
               	<?php if ($basic_model->member_type != 'requester') {?>
                   	<div class="tab-pane" id="payments">
                     	<?php echo $this->renderPartial('_payments',array('fee_model'=>$fee_model,'basic_model'=>$basic_model)); ?>
+                  	</div>
+                  	<div class="tab-pane" id="docs">
+                    	<?php echo $this->renderPartial('docs',array('basic_model'=>$basic_model)); ?>
                   	</div>
               	<?php }?>
              </div>

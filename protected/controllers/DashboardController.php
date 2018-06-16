@@ -27,11 +27,6 @@ class DashboardController extends Controller {
     public function actionIndex() {
         $this->activeLink = 'dashboard';
         $all_user_address=array();
-        //if(isset($_SESSION['user_type'])&&!empty($_SESSION['user_type'])){
-          //  $type = $_SESSION['user_type'];
-        //}else{
-          //  $type = 'doothan';
-        //}
         $type = 'requester';
         // $all_user_details = Users::model()->findAllByAttributes(array('member_type'=>$type,'status'=>2));
         // if(count($all_user_details)>0){
@@ -52,13 +47,12 @@ class DashboardController extends Controller {
         //         }
         //     }
         // }
-        $all_user_address[]= array();
-        // $User_model = new Users('search');
-        // $User_model->unsetAttributes();  // clear any default values
-        // $model->member_type != 'requester';
+        $User_model = new Users('search');
+        $User_model->unsetAttributes();  // clear any default values
+        $model->member_type != 'requester';
         if (isset($_GET['Users']))
             $User_model->attributes = $_GET['Users'];
-            $this->render('index',array('all_user_address'=>$all_user_address,'type'=>$type));
+            $this->render('index',array('all_user_address'=>$all_user_address,'type'=>$type,'User_model' => $User_model,));
     }
     public function actionLoadmap(){
         ini_set('max_execution_time', 300); 

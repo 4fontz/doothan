@@ -122,7 +122,7 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
         array(
             'header' => 'Action',
             'class' => 'ButtonColumn',
-            'template' => '{update}{delete}{view}{docs}',
+            'template' => '{update}{delete}{view}',
             'htmlOptions' => array('style' => 'width: 10%','class' => "button-column"),
             'buttons' => array(
                 'update' => array(
@@ -151,7 +151,7 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
                     },
                     'visible'=>'$data->user_address->address!=""',
                 ),
-                'docs' => array( //the name {reply} must be same
+                /*'docs' => array( //the name {reply} must be same
                     'label' => '<i class="icon-remove icon-white"></i> Docs', // text label of the button
                     'options' => array('class'=>"btn btn-success btn-xs ",'title'=>'Docs','style'=>'margin-left: 0px'),
                     'url' => function($data) {
@@ -159,7 +159,7 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
                         return $url;
                     },
                     'visible'=>'$data->role_change_to_flag!=0'
-               ),
+               ),*/
             )
         ),
     ),
@@ -232,7 +232,8 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
                 array(
                     'header' => 'Action',
                     'class' => 'ButtonColumn',
-                    'template' => '{update}{delete}{view}{docs}',
+                    //'template' => '{update}{delete}{view}{docs}',
+                    'template' => '{update}{delete}{view}',
                     'htmlOptions' => array('style' => 'width: 10%','class' => "button-column"),
                     'buttons' => array(
                         'update' => array(
@@ -263,14 +264,14 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
                                     'visible'=>'$data->user_address->address!=""',
                                     
                              ),
-                             'docs' => array( //the name {reply} must be same
+                            /* 'docs' => array( //the name {reply} must be same
                                   'label' => '<i class="icon-remove icon-white"></i> Docs', // text label of the button
                                  'options' => array('class'=>"btn btn-success btn-xs ",'title'=>'Docs','style'=>'margin-left: 0px'),
                                   'url' => function($data) {
                                       $url = Yii::app()->createUrl('users/customerDocs?id=' . $data->id);
                                       return $url;
                                     }
-                             ),
+                             ),*/
                      )
                  ),
              ),

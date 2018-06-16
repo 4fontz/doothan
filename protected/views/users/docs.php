@@ -1,10 +1,5 @@
-<?php
-$this->breadcrumbs = array(
-    'User docs', 
-);
-?>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.css">
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
 <section class="content">
       <div class="row">
@@ -28,7 +23,7 @@ $this->breadcrumbs = array(
 						Adhar Number : 
 					</div>
 					<div class="col-md-8">
-						<input id="password-field" type="password" class="form-control" name="password" value="<?php echo $model->aadhar_number;?>" disabled="disabled">
+						<input id="password-field" type="password" class="form-control" name="password" value="<?php echo $basic_model->aadhar_number;?>" disabled="disabled">
               			<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password" style="margin-right: 10px;"></span>
 					</div>
 				</div>	
@@ -37,9 +32,9 @@ $this->breadcrumbs = array(
             <div class="box-body user-docs">
              <?php 
               $aadhar_url=Yii::app()->request->baseUrl.'/images/no-img.png'; 
-              if($model->aadhar){
-                if(Yii::app()->params['adharImageBucketUrl'].$model->aadhar){
-                  $aadhar_url=Yii::app()->params['adharImageBucketUrl'].$model->aadhar;
+              if($basic_model->aadhar){
+                  if(Yii::app()->params['adharImageBucketUrl'].$basic_model->aadhar){
+                      $aadhar_url=Yii::app()->params['adharImageBucketUrl'].$basic_model->aadhar;
                 }
                 
               }else{
@@ -73,7 +68,7 @@ $this->breadcrumbs = array(
 						Document Number : 
 					</div>
 					<div class="col-md-8">
-						<input id="password-field-2" type="password" class="form-control" name="password" value="<?php echo $model->photo_number;?>" disabled="disabled">
+						<input id="password-field-2" type="password" class="form-control" name="password" value="<?php echo $basic_model->photo_number;?>" disabled="disabled">
               			<span toggle="#password-field-2" class="fa fa-fw fa-eye field-icon toggle-password2" style="margin-right: 10px;"></span>
 					</div>
 				</div>	
@@ -82,9 +77,9 @@ $this->breadcrumbs = array(
             <div class="box-body user-docs">
               <?php 
               $photo_url=Yii::app()->request->baseUrl.'/images/no-img.png'; 
-              if($model->photo_id){
-                if(Yii::app()->params['photoImageBucketUrl'].$model->photo_id){
-                  $photo_url=Yii::app()->params['photoImageBucketUrl'].$model->photo_id;
+              if($basic_model->photo_id){
+                  if(Yii::app()->params['photoImageBucketUrl'].$basic_model->photo_id){
+                      $photo_url=Yii::app()->params['photoImageBucketUrl'].$basic_model->photo_id;
                 }
                 
               }else{

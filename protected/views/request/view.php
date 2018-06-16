@@ -195,7 +195,7 @@ $this->breadcrumbs = array(
             <div class="row item-info">
               <div class="row invoice-info">
                 <div class="col-sm-4 invoice-col">
-                  <h4>Delivery Address</h4>
+                  <h4>Pickup Address</h4>
                   <address class="item-details-text">
                   	<?php $city         = Cities::model()->findByAttributes(array('city_id'=>$model->to_city));?>
                     <?php echo "<b>Name : </b>".$userDetails->first_name." ".$userDetails->last_name."<br/><br/><b>Address : </b>".$model->to_address .' ' . $city->city_name.' <br/>' . $model->to_state . ' '.$model->to_pincode; ?>
@@ -232,6 +232,12 @@ $this->breadcrumbs = array(
                   </address>
                 </div>
           	</div>
+            <br><br>
+            <div class="">
+              <h4>Distance Between Pickup Location & Doothan  : <?php echo $model->distance;?>Km</h4>
+            </div>
+            <br>
+            <br>
           	<div class="text-center">
               <h2><u>Payment Details</u></h2>
             </div>

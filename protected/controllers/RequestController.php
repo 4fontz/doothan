@@ -149,7 +149,7 @@ class RequestController extends Controller {
     
     public function actionLoadContent(){
         $this->layout=false;
-        $limit = 10;
+        $limit = 2;
         if (isset($_POST["page"])) { $page  = $_POST["page"]; } else { $page=1; };
         $start_from = ($page-1) * $limit;
         $sql = 'SELECT *,user.id as us_id FROM `users` as user left join `user_address` as address on user.id=address.user_id where user.member_type="doothan" and user.status=2 and user.account_status="APPROVED" and user.travel_from_to="Yes" and (user.mode_of_commute="Bike" OR user.mode_of_commute="Car" OR user.mode_of_commute="Bus")Order By Case user.mode_of_commute When "Bike" Then 1 When "Car" Then 2 When "Bus" Then 3 Else 4 End LIMIT '.$start_from.','. $limit;

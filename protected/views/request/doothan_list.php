@@ -2,9 +2,10 @@
     <div>
     	<div id="target-content" >
             <?php
-            $limit = 10;
+            $limit = 2;
             $sql = 'SELECT *,user.id as us_id FROM `users` as user left join `user_address` as address on user.id=address.user_id where user.member_type="doothan" and user.status=2 and user.account_status="APPROVED" and user.travel_from_to="Yes" and (user.mode_of_commute="Bike" OR user.mode_of_commute="Car" OR user.mode_of_commute="Bus")Order By Case user.mode_of_commute When "Bike" Then 1 When "Car" Then 2 When "Bus" Then 3 Else 4 End';
-            $list_content=Yii::app()->db->createCommand($sql)->queryAll();    
+            $list_content=Yii::app()->db->createCommand($sql)->queryAll();  
+            //echo "<pre>";print_r($list_content);die;  
             ?>
             <table class="table table-bordered table-striped">  
                 <thead>  
@@ -20,14 +21,16 @@
                 </thead>  
                 <tbody>  
                 <?php  
+                ini_set('max_execution_time', 300);
                 $request_details = Request::model()->findByPk($request_id);
                 $dropbox_address  = UserAddress::model()->findByAttributes(array('user_id'=>$request_details->dropbox_id));
                 $settings = Settings::model()->find();
                 $i=1;
                 $count = 5;
                 $total_pages_count = array();
+                //echo "<pre>";print_r($list_content);die;
                 foreach($list_content as $list_data) {
-                    if($i<=$count){
+                    //if($i<=$count){
                         $Doothan_pin_code = ($list_data['current_location']!='')?$list_data['current_location']:$list_data['postal_code'];
                         $Doothan_city = ($list_data['current_city']!='')?$list_data['current_city']:$list_data['city'];
                         $Pic_up_location_pincode = $request_details->to_pincode;
@@ -57,11 +60,10 @@
                                     </tr>  
                         		<?php $i++;
                                 
-                         } 
-                    }
-                   
-                }
-           }?>
+                            } 
+                        }
+                //}
+                    }?>
                 </tbody>  
             </table> 
         </div>
