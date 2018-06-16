@@ -74,6 +74,7 @@ $('.search-form form').submit(function(){
 <div class="space_10px"></div>
 <div class="clear"></div>
 <?php
+if(count($model->search())>0){
 $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
     'id' => 'feedback-grid',
     'dataProvider' => $model->search(),
@@ -128,6 +129,7 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
         ),
     ),
 ));
+}
 ?>
 </div>
 
