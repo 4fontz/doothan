@@ -95,18 +95,18 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
     'htmlOptions' => array('class' => 'span12 table-responsive'),
     'itemsCssClass' => 'table',
     'columns' => array(
-        array(
-            'name'=>'id',
-            'header' => 'Id',
-            'htmlOptions' => array('style' => 'width: 4%')
-        ),
-//         array(
-//             'name'=>'doothan_id',
-//             'header'=> 'Doothan',
-//             'type' => 'html',
-//             'value'=> array($model,'FullName'),
-//             'htmlOptions' => array('style' => 'width: 10%'),
-//         ),
+            array(
+                'name'=>'id',
+                'header' => 'Id',
+                'htmlOptions' => array('style' => 'width: 4%')
+            ),
+            array(
+                'name'=>'doothan_id',
+                'header'=> 'Doothan',
+                'type' => 'html',
+                'value'=> array($model,'FullName'),
+                'htmlOptions' => array('style' => 'width: 10%'),
+            ),
             array(
                 'name'=>'notification',
                 'value'=>array($model,'Notification'),
