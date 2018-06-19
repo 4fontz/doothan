@@ -107,7 +107,8 @@ class Notifications extends CActiveRecord
 	public function FullName($data){
 	    $first_name = ($data->user_info->first_name)?$data->user_info->first_name:'';
 	    $last_name = ($data->user_info->last_name)?$data->user_info->last_name:'';
-	    $full_name = $first_name." ".$last_name;
+	    //$full_name = $first_name." ".$last_name;
+	    $full_name = $data->doothan_id;
 	    return CHtml::link($full_name, array('users/customerView?id='.$data->doothan_id));
 	}
 	
