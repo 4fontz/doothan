@@ -107,12 +107,11 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
 //             'value'=> array($model,'FullName'),
 //             'htmlOptions' => array('style' => 'width: 10%'),
 //         ),
-//         array(
-//             'name'=>'notification',
-//             'value'=>array($model,'Notification'),
-//             'htmlOptions' => array('style' => 'width: 15%'),
-//         ),
-        
+            array(
+                'name'=>'notification',
+                'value'=>array($model,'Notification'),
+                'htmlOptions' => array('style' => 'width: 15%'),
+            ),
             array(
                 'name' => 'created_at',
                 'value' => array($model,'userJoinedDate'),
