@@ -70,11 +70,12 @@ class AdminController extends Controller
 		// $this->performAjaxValidation($model);
 		if(isset($_POST['Admin']))
 		{
+		    date_default_timezone_set('Asia/Kolkata');
 			$model->attributes=$_POST['Admin'];
 			$first_name = $_POST['Admin']['first_name'];
 			$last_name = $_POST['Admin']['last_name'];
 			$model->password = md5($_POST['Admin']['password']);
-			$model->created_on = date('y-m-d:h;i:s');
+			$model->created_on = date('y-m-d:h:i:s');
 			$model->status = "Y";
 			if($model->save()){
 			    Yii::app()->user->setFlash('success', "Admin ".$first_name.' '.$last_name." created succesfully");
