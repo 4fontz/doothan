@@ -83,7 +83,6 @@ $('.search-form form').submit(function(){
         <div class="space_10px"></div>
         <div class="clear"></div>
 <?php
-echo "view file";die;
 $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
     'id' => 'feedback-grid',
     'dataProvider' => $model->search(),
@@ -114,12 +113,12 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
             'htmlOptions' => array('style' => 'width: 15%'),
         ),
         
-        array(
-            'name' => 'created_at',
-            'value' => array($model,'userJoinedDate'),
-            // 'value'=>'Yii::app()->dateFormatter->format("m/d/y",$data->created)',
-            'htmlOptions' => array('style' => 'width: 15%')
-        ),
+//         array(
+//             'name' => 'created_at',
+//             'value' => array($model,'userJoinedDate'),
+//             // 'value'=>'Yii::app()->dateFormatter->format("m/d/y",$data->created)',
+//             'htmlOptions' => array('style' => 'width: 15%')
+//         ),
         array(
             'name'=>'comments',
             'header'=> 'Action',
