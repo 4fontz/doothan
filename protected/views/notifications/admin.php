@@ -119,14 +119,14 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
                 // 'value'=>'Yii::app()->dateFormatter->format("m/d/y",$data->created)',
                 'htmlOptions' => array('style' => 'width: 15%')
             ),
-//         array(
-//             'name'=>'comments',
-//             'header'=> 'Action',
-//             'type' => 'raw',
-//             'filter'=>'',
-//             'value'=> array($model,'ViewMore'),
-//             'htmlOptions' => array('style' => 'width: 6%'),
-//         ),
+            array(
+                'name'=>'comments',
+                'header'=> 'Action',
+                'type' => 'raw',
+                'filter'=>'',
+                'value'=> array($model,'ViewMore'),
+                'htmlOptions' => array('style' => 'width: 6%'),
+            ),
     ),
 ));
 ?>
