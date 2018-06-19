@@ -59,9 +59,9 @@ img {max-width:100%;}
 <tr>
 <td>
 <p style="text-align:left;">Hi <?php echo $name; ?>,</p>
-<p style="text-align:left;">Your password request is processed. Please find your password reset code below</p>
+<p style="text-align:left;">Your password request is processed. Please click below link to rest your password</p>
 <p style="padding: 10px 0px; border: 1px dashed #999;">
-Reset Code : &nbsp; <strong><?php echo $code; ?></strong>
+Reset link : &nbsp; <strong><?php echo $link; ?></strong>
 </p><p>
 
 </p>

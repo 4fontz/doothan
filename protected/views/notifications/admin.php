@@ -103,7 +103,7 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
             array(
                 'name'=>'doothan_id',
                 'header'=> 'Doothan',
-                'type' => 'html',
+                //'type' => 'html',
                 'value'=> array($model,'FullName'),
                 'htmlOptions' => array('style' => 'width: 10%'),
             ),

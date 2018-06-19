@@ -61,9 +61,9 @@
                 <i class="fa fa-envelope bg-blue"></i>
                 <div class="timeline-item">
                 <span class="time"><i class="fa fa-clock-o"></i> <?php  echo $date." ".$time; ?></span>
-                <h3 class="timeline-header"><a href="#">Support Team</a> Verification mail sent Successfully</h3>
+                <h3 class="timeline-header"><a href="#">Support Team</a></h3>
                 <div class="timeline-body">
-                 <?php echo $mod->message; echo $mod->type; ?>
+                 <?php echo $mod->message; ?>
                 </div>
               </div>
               <?php }?>

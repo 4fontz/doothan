@@ -118,6 +118,9 @@ class PaymentStatus extends CActiveRecord
 		        'pagination' => array(
 		            'pageSize' => ($this->search_val==-1)?1000:$this->search_val,
 		        ),
+		        'sort'=>array(
+		            'defaultOrder'=>'created_on DESC',
+		        )
 		    ));
 		}else{
     		return new CActiveDataProvider($this, array(
@@ -125,6 +128,9 @@ class PaymentStatus extends CActiveRecord
     			'sort'=>array(
     			 'defaultOrder'=>'t.created_on DESC',
     			 ),
+    		    'sort'=>array(
+    		        'defaultOrder'=>'created_on DESC',
+    		    )
     		));
 		}
 	}

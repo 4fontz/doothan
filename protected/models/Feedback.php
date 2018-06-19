@@ -106,10 +106,16 @@ class Feedback extends CActiveRecord
     		    'pagination' => array(
     		        'pageSize' => ($this->search_val==-1)?1000:$this->search_val,
     		    ),
+    		    'sort'=>array(
+    		        'defaultOrder'=>'created_at DESC',
+    		    )
     		));
 		}else{
 		    return new CActiveDataProvider($this, array(
 		        'criteria'=>$criteria,
+		        'sort'=>array(
+		            'defaultOrder'=>'created_at DESC',
+		        )
 		    ));
 		}
 	}

@@ -101,8 +101,8 @@ class Notification extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		    'sort'=>array(
-		        'defaultOrder'=>'id DESC',
-		    ),
+		        'defaultOrder'=>'started_on DESC',
+		    )
 		));
 	}
 

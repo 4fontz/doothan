@@ -1,5 +1,5 @@
 <?php
-require_once(Yii::getPathOfAlias('vendor').'/password.php');
+//require_once(Yii::getPathOfAlias('vendor').'/password.php');
 /**
  * UserIdentity represents the data needed to identity a user.
  * It contains the authentication method that checks if the provided
@@ -15,24 +15,35 @@ class UserIdentity extends CUserIdentity
      * against some persistent user identity storage (e.g. database).
      * @return boolean whether authentication succeeds.
      */
+    private $_id;
     public function authenticate()
     {
-        $model = Users::model()->find('username = :username OR email = :username AND status = 2', array(':username' => $this->username));       
-        if ($model) {
-            if (password_verify($this->password, $model->password)) {
-                //If it is a valid password
-                $this->_id = $model->id;
-                $this->setState('userData', $model);
-                return true;
-            }
+        $record=Admin::model()->find("username='".$this->username."'");
+        
+        //echo "<pre>";print_r($record);die;
+        if($record===null)
+        {
+            $this->_id='user Null';
+            $this->errorCode=self::ERROR_USERNAME_INVALID;
         }
-
-        return false;
+        
+        else if($record->password!==md5($this->password))            // here I compare db password with passwod field
+        {
+            $this->_id=$this->username;
+            $this->errorCode=self::ERROR_PASSWORD_INVALID;
+        }else{
+            $this->_id=$record->id;
+            $this->username=$record->username;
+            $this->errorCode=self::ERROR_NONE;
+        }
+        //print_r($this->errorCode);die;
+       // return !$this->errorCode;
+        return $this->errorCode==self::ERROR_NONE;
     }
 
     public function getId()
     {
-//        return $this->_id;
-        return 1;
+        return $this->_id;
+        //$this->setState('name', $record->name);
     }
 }

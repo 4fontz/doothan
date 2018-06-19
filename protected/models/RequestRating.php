@@ -87,6 +87,9 @@ class RequestRating extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+		    'sort'=>array(
+		        'defaultOrder'=>'created_on DESC',
+		    )
 		));
 	}
 

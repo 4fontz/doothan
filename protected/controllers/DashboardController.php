@@ -16,7 +16,7 @@ class DashboardController extends Controller {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
                 'actions' => array('index', 'view','loadmap','loadloginstatus'),
-                'users' => array('admin'),
+                'users' => array('*'),
             ),
             array('deny', // deny all users
                 'users' => array('*'),

@@ -169,6 +169,9 @@ class Request extends CActiveRecord
 		        'pagination' => array(
 		            'pageSize' => ($this->search_val==-1)?1000:$this->search_val,
 		        ),
+		        'sort'=>array(
+		            'defaultOrder'=>'created_on DESC',
+		        )
 		    ));
 		}else{
     		return new CActiveDataProvider($this, array(
@@ -176,6 +179,9 @@ class Request extends CActiveRecord
     		    'sort'=>array(
     		        'defaultOrder'=>'t.id DESC',
     		    ),
+    		    'sort'=>array(
+    		        'defaultOrder'=>'created_on DESC',
+    		    )
     		));
 		}
 	}

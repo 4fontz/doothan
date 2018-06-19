@@ -4,14 +4,14 @@ $requestersCount = Users::model()->countByAttributes(array('member_type'=>'reque
 $doothanCount = Users::model()->countByAttributes(array('account_status'=>'CALL_VERIFICATION_PENDING','member_type'=>'doothan'));
 $dropboxCount = Users::model()->countByAttributes(array('account_status'=>'CALL_VERIFICATION_PENDING','member_type'=>'dropbox'));
 $requestCount = Request::model()->countByAttributes(array('status'=>'Request Placed'));
-$openfeedbackCount = Feedback::model()->countByAttributes(array('type'=>'0','status'=>'N'));
+//$openfeedbackCount = Feedback::model()->countByAttributes(array('type'=>'0','status'=>'N'));
 $opencallbacks = Feedback::model()->countByAttributes(array('type'=>'1','status'=>'N'));
 $notificationCount = Notifications::model()->count();
 $criteria = new CDbCriteria;
 $criteria->condition = "status !='success'";
 //print_r($criteria);die;
 $custom_noti_count = Notification::model()->count($criteria);
-
+$loggedUserDetails = Admin::model()->findByPk(Yii::app()->user->getId());
 ?>
 <aside class="main-sidebar">
 <!-- sidebar: style can be found in sidebar.less -->
@@ -19,10 +19,14 @@ $custom_noti_count = Notification::model()->count($criteria);
   <!-- Sidebar user panel -->
   <div class="user-panel">
     <div class="pull-left image">
+    <?php if(Yii::app()->user->getId()==1){?>
       <img src="<?php echo Yii::app()->request->baseUrl; ?>/vendor/dist/img/user2-160x160.png" class="img-circle" alt="User Image">
+    <?php }else{?>
+      <img src="<?php echo Yii::app()->request->baseUrl; ?>/vendor/dist/img/user2-160x1601.JPG" class="user-image" alt="User Image">
+    <?php }?>
     </div>
     <div class="pull-left info">
-      <p>Rajeevan Valappil</p>
+      <p> <?php echo $loggedUserDetails->first_name." ".$loggedUserDetails->last_name?></p>
       <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
     </div>
   </div>
@@ -31,6 +35,7 @@ $custom_noti_count = Notification::model()->count($criteria);
   <ul class="sidebar-menu" data-widget="tree">
     <li class="header">MAIN NAVIGATION</li>
     <li><a href="<?php echo Yii::app()->baseUrl . '/dashboard' ?>"><i class="fa fa-tachometer"></i> <span>Dashboard</span></a></li>
+    <li><a href="<?php echo Yii::app()->baseUrl.'/admin'; ?>"><i class="fa fa-user-secret"></i> <span>Admin</span></a></li>
     <li>
     	<a href="<?php echo Yii::app()->baseUrl.'/users/index?type=requester'; ?>">
     		<i class="fa fa-users"></i> <span>Requestors</span>
@@ -67,9 +72,9 @@ $custom_noti_count = Notification::model()->count($criteria);
     <li>
     	<a href="<?php echo Yii::app()->baseUrl .'/feedback/index'; ?>">
     		<i class="fa fa-comments-o" aria-hidden="true"></i> <span>Feedbacks</span>
-    		<span class="pull-right-container">
+    		<!-- <span class="pull-right-container">
               <small class="label pull-right bg-red"><?php echo ($openfeedbackCount>0)?$openfeedbackCount:'';?></small>
-          	</span>
+        </span> -->
     	</a>
     </li>
     <li>

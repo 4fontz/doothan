@@ -10,9 +10,9 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
         </div>
       	<div class="modal-body">    
             <div class="form-group">
-							<div class="form-group">	
-									<p><b>Callback : </b><?php echo $model->comments; ?></p>
-							</div>
+			<!-- <div class="form-group">	
+					<p><b>Callback : </b><?php echo $model->comments; ?></p>
+			</div> -->
               <div class="form-group">
                   <?php echo $form->labelEx($model,'comments'); ?>
                   <?php echo $form->textArea($model,'comments',array('class'=>'form-control','maxlength'=>200)); ?>

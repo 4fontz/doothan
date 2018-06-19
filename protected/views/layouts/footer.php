@@ -151,10 +151,6 @@
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/vendor/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/vendor/bower_components/moment/min/moment.min.js"></script>
-<!-- daterangepicker 
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/vendor/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>-->
-<!-- datepicker 
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/vendor/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>-->
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/vendor/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
@@ -182,5 +178,4 @@
 </script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ba-bbq/1.2.1/jquery.ba-bbq.min.js"></script>
-
 <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
