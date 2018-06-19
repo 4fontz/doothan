@@ -113,12 +113,12 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
 //             'htmlOptions' => array('style' => 'width: 15%'),
 //         ),
         
-//         array(
-//             'name' => 'created_at',
-//             'value' => array($model,'userJoinedDate'),
-//             // 'value'=>'Yii::app()->dateFormatter->format("m/d/y",$data->created)',
-//             'htmlOptions' => array('style' => 'width: 15%')
-//         ),
+            array(
+                'name' => 'created_at',
+                'value' => array($model,'userJoinedDate'),
+                // 'value'=>'Yii::app()->dateFormatter->format("m/d/y",$data->created)',
+                'htmlOptions' => array('style' => 'width: 15%')
+            ),
 //         array(
 //             'name'=>'comments',
 //             'header'=> 'Action',
