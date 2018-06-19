@@ -104,6 +104,7 @@ class AdminController extends Controller
 		$this->page_title ='Update '.$model->first_name." ".$model->last_name;
 		if(isset($_POST['Admin']))
 		{
+		    date_default_timezone_set('Asia/Kolkata');
 			$model->attributes=$_POST['Admin'];
 			$first_name = $_POST['Admin']['first_name'];
 			$last_name = $_POST['Admin']['last_name'];
