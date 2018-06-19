@@ -197,6 +197,7 @@ class Helper extends CActiveRecord {
     }
 
     public static function dateFormat($date) {
+        date_default_timezone_set('Asia/Kolkata');
         $date           = strtotime($date);
         $returnDate     = date('j F Y',$date);
         return $returnDate;
