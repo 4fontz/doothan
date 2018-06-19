@@ -127,7 +127,6 @@ class NotificationsController extends Controller
 	    $model->unsetAttributes();  // clear any default values
 	    if (isset($_GET['Notifications']))
 	        $model->attributes = $_GET['Notifications'];
-	    echo "here";die;
 	        $this->render('admin', array(
 	            'model' => $model,
 	        ));

@@ -83,6 +83,7 @@ $('.search-form form').submit(function(){
         <div class="space_10px"></div>
         <div class="clear"></div>
 <?php
+echo "view file";die;
 $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
     'id' => 'feedback-grid',
     'dataProvider' => $model->search(),
