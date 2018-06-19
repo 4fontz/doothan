@@ -100,18 +100,18 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
             'header' => 'Id',
             'htmlOptions' => array('style' => 'width: 4%')
         ),
-        array(
-            'name'=>'doothan_id',
-            'header'=> 'Doothan',
-            'type' => 'html',
-            'value'=> array($model,'FullName'),
-            'htmlOptions' => array('style' => 'width: 10%'),
-        ),
-        array(
-            'name'=>'notification',
-            'value'=>array($model,'Notification'),
-            'htmlOptions' => array('style' => 'width: 15%'),
-        ),
+//         array(
+//             'name'=>'doothan_id',
+//             'header'=> 'Doothan',
+//             'type' => 'html',
+//             'value'=> array($model,'FullName'),
+//             'htmlOptions' => array('style' => 'width: 10%'),
+//         ),
+//         array(
+//             'name'=>'notification',
+//             'value'=>array($model,'Notification'),
+//             'htmlOptions' => array('style' => 'width: 15%'),
+//         ),
         
 //         array(
 //             'name' => 'created_at',
@@ -119,14 +119,14 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
 //             // 'value'=>'Yii::app()->dateFormatter->format("m/d/y",$data->created)',
 //             'htmlOptions' => array('style' => 'width: 15%')
 //         ),
-        array(
-            'name'=>'comments',
-            'header'=> 'Action',
-            'type' => 'raw',
-            'filter'=>'',
-            'value'=> array($model,'ViewMore'),
-            'htmlOptions' => array('style' => 'width: 6%'),
-        ),
+//         array(
+//             'name'=>'comments',
+//             'header'=> 'Action',
+//             'type' => 'raw',
+//             'filter'=>'',
+//             'value'=> array($model,'ViewMore'),
+//             'htmlOptions' => array('style' => 'width: 6%'),
+//         ),
     ),
 ));
 ?>
