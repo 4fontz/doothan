@@ -89,13 +89,13 @@ if(count($model->search())>0){
             'header' => 'Id',
             'htmlOptions' => array('style' => 'width: 4%')
         ),
-        /*array(
+        array(
             'name'=>'first_name',
             'header'=> 'Name',
             'type' => 'html',
             'value'=> array($model,'FullName'),
             'htmlOptions' => array('style' => 'width: 10%'),
-        ),*/
+        ),
         array(
             'name'=>'email_id',
             'header'=> 'Email Id',

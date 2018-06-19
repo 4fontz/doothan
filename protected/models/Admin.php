@@ -136,6 +136,6 @@ class Admin extends CActiveRecord
 	    $first_name = $data->first_name;
 	    $last_name = $data->last_name;
 	    $full_name = $first_name." ".$last_name;
-	    return $full_name;
+	    echo  $full_name;
 	}
 }
