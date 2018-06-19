@@ -53,6 +53,7 @@ class ActivityController extends Controller {
         $empty_model = new ActivityLog;
         $model = ActivityLog::model()->findAll($criteria);
         $date = array();
+        date_default_timezone_set('Asia/Kolkata');
         foreach($model as $mod){
             $date_only = explode(' ',$mod->created_on);
             $time=strtotime($date_only[0]);
