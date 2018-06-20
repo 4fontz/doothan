@@ -61,30 +61,19 @@ class AdministratorController extends Controller {
                 //$name=$record->first_name;
                 $rand = mt_rand(1000, 9999);
                 $record->uniq_id = substr($record->id.$rand, 0, 4);
-                $url="<a href='".Yii::app()->request->baseUrl."/administrator/Checkid&uniq_id=".$record->uniq_id."'>Click here</a>";
-                //$trans = Yii::app ()->db->beginTransaction ();
+                $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+                $url="<a href='".$actual_link."/doothan/administrator/checkid?uniq_id=".$record->uniq_id."'>Click here</a>";
                 $settings = Settings::model()->find();
                 if($record->save())
                 {
-//                     $mail = new SesMailer();
-//                     $mail->setView('forgotpassword_admin');
-//                     $name = $record->first_name . ' ' . $record->last_name;
-//                     $mail->setData(array('email' => $record->email_id,'name' => $record->first_name . ' ' . $model->last_name,'link'=>$url));
-//                     $mail->setFrom('support@doothan.in',$settings->from_name);
-//                     $mail->setTo($model->email, $model->first_name);
-//                     $mail->setSubject('DOOTHAN : Forgot Password');
-                    $mail = Yii::app()->Smtpmail;
-                    $mail->SetFrom("achusoman12@gmail.com",$settings->from_name);
-                    $mail->Subject = 'DOOTHAN : Forgot Password';
+                    $mail = new SesMailer();
+                    $mail->setView('forgotpassword_admin');
                     $name = $record->first_name . ' ' . $record->last_name;
-                    $mail->MsgHTML($this->render('/mail/forgotpassword_admin',array('email' => $record->email_id,'name' => $record->first_name . ' ' . $record->last_name,'link'=>$url),true));
-                    $mail->AddAddress($record->email_id, $record->first_name);
-                    //$mail->AddReplyTo("support@doothan.in",$settings->from_name);
-                    $mail->SMTPDebug = 1;
-                    $mail->SMTPSecure = 'tls';
-                    //$response_status='Success';
+                    $mail->setData(array('email' => $record->email_id,'name' => $record->first_name . ' ' . $record->last_name,'link'=>$url));
+                    $mail->setFrom('support@doothan.in',$settings->from_name);
+                    $mail->setTo($record->email_id, $record->first_name);
+                    $mail->setSubject('DOOTHAN : Forgot Password');
                     if (!$mail->Send()) {
-                        //print_r(error_get_last());die;
                         $this->renderJSON(array('status' => 'false', 'message' => 'Unable to send password reset code'));
                     }else{
                         $this->renderJSON(array('status' => 'true', 'message' => 'Password reset code sent successfully'));
@@ -118,7 +107,7 @@ class AdministratorController extends Controller {
                     }
                 }
             }
-            $this->render('password_reset',array(
+            $this->render('/login/password_reset',array(
                 'model'=>$model,'uniq_id'=>$uniq_id
             ));
         }else{

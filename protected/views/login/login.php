@@ -3,7 +3,7 @@
     <head>
         <title>Admin Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">   
-      <link rel="icon" type="image/png" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico"> 
+      	<link rel="icon" type="image/png" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico"> 
         <!-- Bootstrap -->
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/admin/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/admin/font-awesome.min.css" rel="stylesheet" media="screen">
@@ -18,6 +18,18 @@
     <body class="hold-transition login-page" id="login">
 
         <div class="login-box">
+        	<?php if (Yii::app()->user->hasFlash('success')): ?>
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <?php echo Yii::app()->user->getFlash('success'); ?>
+                </div>
+            <?php endif; ?>
+            <?php if (Yii::app()->user->hasFlash('error')): ?>
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <?php echo Yii::app()->user->getFlash('error'); ?>
+                </div>
+            <?php endif; ?>
             <div class="login-logo">
                 <a><img src="<?php echo Yii::app()->request->baseUrl; ?>/vendor/dist/img/logo.png"></a>
             </div><!-- /.login-logo -->

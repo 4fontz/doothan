@@ -3,7 +3,7 @@
     <head>
         <title>Password Reset</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">   
-      <link rel="icon" type="image/png" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico"> 
+      	<link rel="icon" type="image/png" href="<?php echo Yii::app()->request->baseUrl; ?>/images/favicon.ico"> 
         <!-- Bootstrap -->
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/admin/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/admin/font-awesome.min.css" rel="stylesheet" media="screen">
@@ -23,7 +23,7 @@
             </div><!-- /.login-logo -->
             <div class="login-box-body">
                 <div id="forgot_body">
-       				<p class="login-box-msg">Forgot Password</p>
+       				<p class="login-box-msg">Reset Password</p>
                     <?php
                     $form = $this->beginWidget('CActiveForm', array(
                         'id' => 'reset-form',
