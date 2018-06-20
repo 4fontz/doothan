@@ -47,6 +47,7 @@ class AdministratorController extends Controller {
     
     public function actionForgot(){
         $this->layout=false;
+        date_default_timezone_set('Asia/Kolkata');
         if(isset($_POST['AdminForm']['username_forgot']))
         {
             $getEmail=$_POST['AdminForm']['username_forgot'];
