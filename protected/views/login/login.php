@@ -165,7 +165,7 @@ $('form#forgot-form').submit(function(event){
         dataType:'json',
         data:$('form#forgot-form').serialize(),
         success:function(data){
-        	$('#forgot_pass_btn').html('Submit').css({'cursor':'pointer'});alert(data.status);
+        	$('#forgot_pass_btn').html('Submit').css({'cursor':'pointer'});
             if(data.status=="false"){
 				$('#span_msg').html(data.message).css({'color':'red'});
 				$('#AdminForm_username_forgot').css({'border':'1px solid red'});
