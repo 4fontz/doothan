@@ -61,7 +61,7 @@
                     </div>
                     <?php endif; ?> 
                     <div  class="form-group has-feedback">
-                        <?php echo $form->textField($model, 'username_forgot', array('class'=>'form-control','placeholder' => 'username')); ?>
+                        <?php echo $form->textField($model, 'username_forgot', array('class'=>'form-control','placeholder' => 'username','autocomplete'=>"off")); ?>
                         <!--<input type="email" name="user_email" id="user_email" class="form-control" placeholder="Email or Username">-->
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
