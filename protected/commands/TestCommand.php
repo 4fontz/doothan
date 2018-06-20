@@ -2,7 +2,7 @@
 
 class TestCommand extends CConsoleCommand
 {
-    public function run($args)
+    public function run()
     {
         $table1=new Fee;
         
