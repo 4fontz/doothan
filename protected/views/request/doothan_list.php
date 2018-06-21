@@ -4,7 +4,7 @@
             <?php
             $limit = 2;
             //$sql = 'SELECT *,user.id as us_id FROM `users` as user left join `user_address` as address on user.id=address.user_id where user.member_type="doothan" and user.status=2 and user.account_status="APPROVED" and user.travel_from_to="Yes" and (user.mode_of_commute="Bike" OR user.mode_of_commute="Car" OR user.mode_of_commute="Bus")Order By Case user.mode_of_commute When "Bike" Then 1 When "Car" Then 2 When "Bus" Then 3 Else 4 End';
-            $sql = 'SELECT * from `users` as user left join `user_address` as address on user.id=address.user_id where user.member_type="doothan" and user.status=2 and user.account_status="APPROVED"';
+            $sql = 'SELECT user.id as us_id,user.first_name,user.phone,user.email,user.last_name,user.current_location,address.postal_code,user.current_city,address.city from `users` as user left join `user_address` as address on user.id=address.user_id where user.member_type="doothan" and user.status=2 and user.account_status="APPROVED"';
             $list_content=Yii::app()->db->createCommand($sql)->queryAll();  
             //echo "<pre>";print_r($list_content);die;  
             ?>
