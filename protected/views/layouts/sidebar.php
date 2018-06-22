@@ -35,7 +35,9 @@ $loggedUserDetails = Admin::model()->findByPk(Yii::app()->user->getId());
   <ul class="sidebar-menu" data-widget="tree">
     <li class="header">MAIN NAVIGATION</li>
     <li><a href="<?php echo Yii::app()->baseUrl . '/dashboard' ?>"><i class="fa fa-tachometer"></i> <span>Dashboard</span></a></li>
-    <li><a href="<?php echo Yii::app()->baseUrl.'/admin'; ?>"><i class="fa fa-user-secret"></i> <span>Admin</span></a></li>
+    <?php if(Yii::app()->user->getId()==1){?>
+    	<li><a href="<?php echo Yii::app()->baseUrl.'/admin'; ?>"><i class="fa fa-user-secret"></i> <span>Admin</span></a></li>
+    <?php }?>
     <li>
     	<a href="<?php echo Yii::app()->baseUrl.'/users/index?type=requester'; ?>">
     		<i class="fa fa-users"></i> <span>Requestors</span>

@@ -64,33 +64,37 @@ class AdminController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Admin;
-		$this->page_title ='Create Admin';
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-		if(isset($_POST['Admin']))
-		{
-		    date_default_timezone_set('Asia/Kolkata');
-			$model->attributes=$_POST['Admin'];
-			$first_name = $_POST['Admin']['first_name'];
-			$last_name = $_POST['Admin']['last_name'];
-			$model->password = md5($_POST['Admin']['password']);
-			$model->created_on = date('y-m-d:h:i:s');
-			$model->status = "Y";
-			if($model->save()){
-			    Yii::app()->user->setFlash('success', "Admin ".$first_name.' '.$last_name." created succesfully");
-			    $message = "New admin ".$first_name.' '.$last_name." created ";
-			    Common::activityLog($model->id, 'ADMIN', $message, date('Y-m-d H:i:s'));
-			    $this->redirect(array('admin'));
-			}else{
-			    Yii::app()->user->setFlash('error', "Error while creating user");
-			    //$this->redirect(array('admin/create'));
-			}
-		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
+	    if(Yii::app()->user->getId()==1){
+    		$model=new Admin;
+    		$this->page_title ='Create Admin';
+    		// Uncomment the following line if AJAX validation is needed
+    		// $this->performAjaxValidation($model);
+    		if(isset($_POST['Admin']))
+    		{
+    		    date_default_timezone_set('Asia/Kolkata');
+    			$model->attributes=$_POST['Admin'];
+    			$first_name = $_POST['Admin']['first_name'];
+    			$last_name = $_POST['Admin']['last_name'];
+    			$model->password = md5($_POST['Admin']['password']);
+    			$model->created_on = date('y-m-d:h:i:s');
+    			$model->status = "Y";
+    			if($model->save()){
+    			    Yii::app()->user->setFlash('success', "Admin ".$first_name.' '.$last_name." created succesfully");
+    			    $message = "New admin ".$first_name.' '.$last_name." created ";
+    			    Common::activityLog($model->id, 'ADMIN', $message, date('Y-m-d H:i:s'));
+    			    $this->redirect(array('admin'));
+    			}else{
+    			    Yii::app()->user->setFlash('error', "Error while creating user");
+    			    //$this->redirect(array('admin/create'));
+    			}
+    		}
+    
+    		$this->render('create',array(
+    			'model'=>$model,
+    		));
+	    }else{
+	        throw new CHttpException(404,'You are not authorised to perform this action');
+	    }
 	}
 
 	/**
@@ -100,27 +104,31 @@ class AdminController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
-		$this->page_title ='Update '.$model->first_name." ".$model->last_name;
-		if(isset($_POST['Admin']))
-		{
-		    date_default_timezone_set('Asia/Kolkata');
-			$model->attributes=$_POST['Admin'];
-			$first_name = $_POST['Admin']['first_name'];
-			$last_name = $_POST['Admin']['last_name'];
-			if($model->save(false)){
-			    Yii::app()->user->setFlash('success', "Admin ".$first_name.' '.$last_name." succesfully updated");
-			    $message = "Admin ".$first_name.' '.$last_name." profile updated ";
-			    Common::activityLog($model->id, 'ADMIN', $message, date('Y-m-d H:i:s'));
-			}else{
-			    Yii::app()->user->setFlash('error', "Error while updating user");
-			}
-			$this->redirect(array('admin'));
-		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
+	    if(Yii::app()->user->getId()==1){
+    		$model=$this->loadModel($id);
+    		$this->page_title ='Update '.$model->first_name." ".$model->last_name;
+    		if(isset($_POST['Admin']))
+    		{
+    		    date_default_timezone_set('Asia/Kolkata');
+    			$model->attributes=$_POST['Admin'];
+    			$first_name = $_POST['Admin']['first_name'];
+    			$last_name = $_POST['Admin']['last_name'];
+    			if($model->save(false)){
+    			    Yii::app()->user->setFlash('success', "Admin ".$first_name.' '.$last_name." succesfully updated");
+    			    $message = "Admin ".$first_name.' '.$last_name." profile updated ";
+    			    Common::activityLog($model->id, 'ADMIN', $message, date('Y-m-d H:i:s'));
+    			}else{
+    			    Yii::app()->user->setFlash('error', "Error while updating user");
+    			}
+    			$this->redirect(array('admin'));
+    		}
+    
+    		$this->render('update',array(
+    			'model'=>$model,
+    		));
+	    }else{
+	        throw new CHttpException(404,'You are not authorised to perform this action');
+	    }
 	}
 
 	/**
@@ -130,13 +138,17 @@ class AdminController extends Controller
 	 */
 	public function actionadminDelete($id)
 	{
-		$model = $this->loadModel($id);
-		$this->loadModel($id)->delete();
-		Yii::app()->user->setFlash('success', "Admin has been deleted successfully.");
-		$message = "Admin ".$model->first_name.' '.$model->last_name." deleted";
-		Common::activityLog($model->id, 'ADMIN', $message, date('Y-m-d H:i:s'));
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		$this->redirect(array('admin'));
+	    if(Yii::app()->user->getId()==1){
+    		$model = $this->loadModel($id);
+    		$this->loadModel($id)->delete();
+    		Yii::app()->user->setFlash('success', "Admin has been deleted successfully.");
+    		$message = "Admin ".$model->first_name.' '.$model->last_name." deleted";
+    		Common::activityLog($model->id, 'ADMIN', $message, date('Y-m-d H:i:s'));
+    		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+    		$this->redirect(array('admin'));
+	    }else{
+	        throw new CHttpException(404,'You are not authorised to perform this action');
+	    }
 	}
 
 	/**
@@ -144,15 +156,19 @@ class AdminController extends Controller
 	 */
 	public function actionIndex()
 	{
-	    $model = new Admin('search');
-	    $this->page_title   = 'Admin Management';
-	    $model->unsetAttributes();  // clear any default values
-	    if (isset($_GET['Admin']))
-	        $model->unsetAttributes();  // clear any default values
-	        $model->attributes = $_GET['Admin'];
-	        $this->render('admin', array(
-	            'model' => $model,
+	    if(Yii::app()->user->getId()==1){
+    	    $model = new Admin('search');
+    	    $this->page_title   = 'Admin Management';
+    	    $model->unsetAttributes();  // clear any default values
+    	    if (isset($_GET['Admin']))
+    	        $model->unsetAttributes();  // clear any default values
+    	        $model->attributes = $_GET['Admin'];
+    	        $this->render('admin', array(
+    	            'model' => $model,
 	        ));
+    	}else{
+    	    throw new CHttpException(404,'You are not authorised to perform this action');
+    	}
 	}
 
 	/**

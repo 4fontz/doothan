@@ -104,6 +104,13 @@ if(count($model->search())>0){
             'htmlOptions' => array('style' => 'width: 10%'),
         ),
         array(
+            'name'=>'username',
+            'header'=> 'Username',
+            //'type' => 'html',
+            //'value'=> array($model,'FullName'),
+            'htmlOptions' => array('style' => 'width: 10%'),
+        ),
+        array(
             'name'=>'phone',
             'header'=> 'Phone Number',
             //'type' => 'html',

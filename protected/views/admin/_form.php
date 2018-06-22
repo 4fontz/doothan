@@ -61,11 +61,21 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                       <?php echo $form->textField($model,'email_id',array('class'=>'form-control','maxlength'=>150)); ?>
                       <?php echo $form->error($model,'email_id'); ?>
                   </div>
+                  <?php if(!$model->id){?>
                   <div class="form-group">
                       <?php echo $form->labelEx($model,'password'); ?>
                       <?php echo $form->passwordField($model,'password',array('class'=>'form-control','maxlength'=>150)); ?>
                       <?php echo $form->error($model,'password'); ?>
                   </div>
+                  <?php }else{
+                      if(Yii::app()->user->getId()==$model->id){?>
+                          <div class="form-group">
+                              <?php echo $form->labelEx($model,'password'); ?>
+                              <?php echo $form->passwordField($model,'password',array('class'=>'form-control','maxlength'=>150)); ?>
+                              <?php echo $form->error($model,'password'); ?>
+                          </div>
+                      <?php }
+                  }?>
                   <div class="form-group">
                 	<?php $this->widget('bootstrap.widgets.TbButton', array(
                 		'buttonType'=>'submit',
