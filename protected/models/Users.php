@@ -402,7 +402,7 @@ class Users extends CActiveRecord {
             if(Yii::app()->params['adharImageBucketUrl'].$model->aadhar){
                // $aadhar_url=Yii::app()->params['adharImageBucketUrl'].$data->aadhar;
                 $aadhar_url = Yii::app()->baseUrl."/images/success-tick.png";
-                $link = '<a href='.$aadhar_url.' data-fancybox data-caption="Aadhar"><img src='.$aadhar_url.' alt="" style="width: 20px;height: 20px;"/></a>';
+                $link = '<img src='.$aadhar_url.' alt="" style="width: 20px;height: 20px;"/>';
             }
         }else{
             //$aadhar_url=Yii::app()->request->baseUrl.'/images/no-img.png';
@@ -416,7 +416,7 @@ class Users extends CActiveRecord {
             if(Yii::app()->params['photoImageBucketUrl'].$model->photo_id){
                 //$photo_url=Yii::app()->params['photoImageBucketUrl'].$data->photo_id;
                 $photo_url = Yii::app()->baseUrl."/images/success-tick.png";
-                $link = '<a href='.$photo_url.' data-fancybox data-caption="Photo"><img src='.$photo_url.' alt="" style="width: 20px;height: 20px;"/></a>';;
+                $link = '<img src='.$photo_url.' alt="" style="width: 20px;height: 20px;"/>';;
             }
         }else{
             //$photo_url=Yii::app()->request->baseUrl.'/images/no-img.png';
