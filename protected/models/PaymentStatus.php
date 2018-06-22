@@ -129,7 +129,7 @@ class PaymentStatus extends CActiveRecord
     			 'defaultOrder'=>'t.created_on DESC',
     			 ),
     		    'sort'=>array(
-    		        'defaultOrder'=>'created_on DESC',
+    		        'defaultOrder'=>'t.created_on DESC',
     		    )
     		));
 		}
