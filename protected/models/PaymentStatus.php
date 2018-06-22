@@ -111,7 +111,7 @@ class PaymentStatus extends CActiveRecord
 		$criteria->compare('bankcode',$this->bankcode,true);
 		$criteria->compare('bank_ref_num',$this->bank_ref_num,true);
 		$criteria->compare('status',$this->status,true);
-		$criteria->compare('created_on',$this->created_on,true);
+		$criteria->compare('t.created_on',$this->created_on,true);
 		if($this->search_val!=0 && $this->search_val!=''){
 		    return new CActiveDataProvider($this, array(
 		        'criteria'=>$criteria,
@@ -119,7 +119,7 @@ class PaymentStatus extends CActiveRecord
 		            'pageSize' => ($this->search_val==-1)?1000:$this->search_val,
 		        ),
 		        'sort'=>array(
-		            'defaultOrder'=>'created_on DESC',
+		            'defaultOrder'=>'t.created_on DESC',
 		        )
 		    ));
 		}else{
