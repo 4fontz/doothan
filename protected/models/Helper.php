@@ -234,5 +234,16 @@ class Helper extends CActiveRecord {
             )
         );
     }
+    
+    public static function getDistrict($pin_code){
+        $url = "https://maps.google.com/maps/api/geocode/json?address=$pin_code&sensor=false&key=AIzaSyCo5F-SOvu8_wVKVpPSl_3_t4V9fbSHdwA";
+        //$url = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=$address&key=AIzaSyA7IZt-36CgqSGDFK8pChUdQXFyKIhpMBY";
+        
+        $response = file_get_contents($url);
+        $output = json_decode($response);
+        $DistrictList =  json_decode( json_encode($output), true);
+        return $DistrictList['results'][0]['address_components'][1]['long_name'];
+        //echo "<pre>";print_r($output);die;
+    }
 
 }

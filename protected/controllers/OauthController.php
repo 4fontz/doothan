@@ -710,6 +710,7 @@ class OauthController extends Controller {
         $model->invite_code = substr(md5($model->email . mt_rand() . microtime()), 0, 7);
         $address = new UserAddress();
         $address->address = (isset($gettingresponse['address'])) ? $gettingresponse['address'] : '';
+        $adddress->district = Helper::getDistrict($gettingresponse['pincode']);
         $address->city = (isset($gettingresponse['city'])) ? $gettingresponse['city'] : '';
         $address->postal_code = (isset($gettingresponse['pincode'])) ? $gettingresponse['pincode'] : '';
         $address->state = (isset($gettingresponse['state'])) ? $gettingresponse['state'] : '';

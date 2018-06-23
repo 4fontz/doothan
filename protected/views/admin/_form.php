@@ -64,7 +64,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
                   <?php if(!$model->id){?>
                   <div class="form-group">
                       <?php echo $form->labelEx($model,'password'); ?>
-                      <?php echo $form->passwordField($model,'password',array('class'=>'form-control','maxlength'=>150)); ?>
+                      <?php echo $form->passwordField($model,'password',array('class'=>'form-control','maxlength'=>150,'autocomplete'=>"off")); ?>
                       <?php echo $form->error($model,'password'); ?>
                   </div>
                   <?php }else{

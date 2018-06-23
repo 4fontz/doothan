@@ -1846,7 +1846,31 @@ class ApiController extends Controller {
             $this->renderJSON($result);
         }*/
     }
-    public function actionScrptFile(){
+    
+    public function actionGetStateAndDistrict(){
+       ini_set('max_execution_time', 300000); //300 seconds = 5 minutes
+        $dropboxList = Users::model()->findAllByAttributes(array('member_type'=>'doothan'));
+        //echo "<pre>";print_r($dropboxList);die;
+        if(count($dropboxList)>0){
+            foreach($dropboxList as $drop){
+                $dropboxPin = UserAddress::model()->findByAttributes(array('user_id'=>$drop->id));
+                $dropboxpincode = $dropboxPin->postal_code;
+                //echo $dropboxpincode;die;
+                $district = Helper::getDistrict($dropboxpincode);
+                if($district){
+                    //echo $district;die;
+                    $dropboxPin->district = $district;
+                    if($dropboxPin->save(false)){
+                        echo "district=>".$district."</br>";
+                    }else{
+                        print_r($dropboxPin->getErrors());die;
+                    }
+                }
+            }
+        }
+     }
+    
+    /*public function actionScrptFile(){
         ini_set('max_execution_time', 300000); //300 seconds = 5 minutes
         for($i=1232;$i<=5000;$i++){
             $sql = "insert into users (id, username,password,first_name,last_name,email,country_code,phone,dob,profession,status,member_type,gender,created,updated,account_status,login_state,aadhar,photo_id,photo_number,aadhar_number,office_address,travel_from_to,mode_of_commute,shop_location,shop_phone,working_hours) values (:id, :username,:password,:first_name,:last_name,:email,:country_code,:phone,:dob,:profession,:status,:member_type,:gender,:created,:updated,:account_status,:login_state,:aadhar,:photo_id,:photo_number,:aadhar_number,:office_address,:travel_from_to,:mode_of_commute,:shop_location,:shop_phone,:working_hours)";
@@ -1902,5 +1926,5 @@ class ApiController extends Controller {
                 Yii::app()->db->createCommand($address_sql)->execute($address_parameters);
                 sleep(3);
         }
-    }
+    }*/
 }
