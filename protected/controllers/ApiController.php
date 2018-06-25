@@ -1870,6 +1870,22 @@ class ApiController extends Controller {
         }
      }
     
+     
+     public function actiongetImportDB(){
+         $db = Yii::$app->db;
+         $sql1 = '';
+         $transaction = $db->beginTransaction();
+         try {
+             $db->createCommand($sql1)->execute();
+             $transaction->commit();
+         } catch(\Exception $e) {
+             $transaction->rollBack();
+             throw $e;
+         } catch(\Throwable $e) {
+             $transaction->rollBack();
+             throw $e;
+         }
+     }
     /*public function actionScrptFile(){
         ini_set('max_execution_time', 300000); //300 seconds = 5 minutes
         for($i=1232;$i<=5000;$i++){
