@@ -790,6 +790,7 @@ public function actioncustomercontactupdate($id) {
     }
     
     public function actionCustomerView($id){
+        date_default_timezone_set('Asia/Kolkata');
         $this->page_title = 'View User';
         if (isset($_GET['pageSize'])) {
             Yii::app()->user->setState('pageSize', (int) $_GET['pageSize']);
