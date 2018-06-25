@@ -129,7 +129,7 @@ class Feedback extends CActiveRecord
 	    $first_name = $data->user_info->first_name;
 	    $last_name = ($data->user_info->last_name)?$data->user_info->last_name:'';
 	    $full_name = $first_name." ".$last_name;
-	    return CHtml::link($full_name, array('users/customerView?id='.$data->user_id));
+	    echo CHtml::link($full_name, array('users/customerView?id='.$data->user_id));
 	}
 	
 	public function PhoneNumber($data){
