@@ -234,7 +234,7 @@ $this->breadcrumbs = array(
           	</div>
             <br><br>
             <div class="">
-              <h4>Distance Between Pickup Location & Doothan  : <?php echo $model->distance;?>Km</h4>
+              <h4>Distance Between Pickup Location & Dropbox  : <?php echo $model->distance;?>Km</h4>
             </div>
             <br>
             <br>
