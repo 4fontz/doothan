@@ -33,6 +33,8 @@
                         $Doothan_city = ($list_data['current_city']!='')?$list_data['current_city']:$list_data['city'];
                         $params = array($Doothan_pin_code,$dropbox_pin_code);
                         $doothan_dropbox_distance = Helper::getLocationDistance($params);
+                        $doothan_pickup_dist_param = array($Doothan_pin_code,$request->to_pincode);
+                        $pickup_doothan_distance = Helper::getLocationDistance($doothan_pickup_dist_param);
                         if(intval($doothan_dropbox_distance)<=intval($settings->minimum_km)){?>
                             <tr>  
                                 <td>
@@ -48,7 +50,7 @@
                                 <td><?php echo $list_data["email"]; ?></td>  
                                 <td><?php echo $doothan_dropbox_distance; ?></td>
                                 <td><?php echo $pickup_doothan_distance;?></td> 
-                                <td><?php //$amount_data = $pickup_doothan_distance*$settings->default_distance_charge+5;echo number_format((float)$amount_data, 2, '.', ''); ?></td>  
+                                <td><?php $amount_data = $pickup_doothan_distance*$settings->default_distance_charge+5;echo number_format((float)$amount_data, 2, '.', ''); ?></td>  
                             </tr>  
                         	<?php $i++;
                         }
