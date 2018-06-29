@@ -32,9 +32,14 @@
                         $Doothan_pin_code = ($list_data['current_location']!='')?$list_data['current_location']:$list_data['postal_code'];
                         $Doothan_city = ($list_data['current_city']!='')?$list_data['current_city']:$list_data['city'];
                         $params = array($Doothan_pin_code,$dropbox_pin_code);
+                        //echo "<pre>";print_r($params)."<br/>";die;
                         $doothan_dropbox_distance = Helper::getLocationDistance($params);
-                        $doothan_pickup_dist_param = array($Doothan_pin_code,$request->to_pincode);
-                        $pickup_doothan_distance = Helper::getLocationDistance($doothan_pickup_dist_param);
+                        //echo "<pre>";print_r($doothan_dropbox_distance);die;
+                        $doothan_pickup_dist_param = array($Doothan_pin_code,$request_details->to_pincode);
+                        //secho "<pre>";print_r($doothan_pickup_dist_param);die;
+                        //echo "<pre>";print_r($doothan_pickup_dist_param);die;
+                        $pickup_doothan_distance = Helper::getLocationDistance_pickup($doothan_pickup_dist_param);
+                        //echo $pickup_doothan_distance;die;
                         if(intval($doothan_dropbox_distance)<=intval($settings->minimum_km)){?>
                             <tr>  
                                 <td>

@@ -207,7 +207,7 @@ class Helper extends CActiveRecord {
        
         $addressFrom = preg_replace('/\s+/', '+', str_replace(array("\r\n", "\r", "\n"), ',', trim($params[0])));
         $addressTo = preg_replace('/\s+/', '+', str_replace(array("\r\n", "\r", "\n"), ',', trim($params[1])));
-        $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$addressFrom&destinations=$addressTo&key=AIzaSyCo5F-SOvu8_wVKVpPSl_3_t4V9fbSHdwA";
+        $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$addressFrom&destinations=$addressTo&key=AIzaSyA7IZt-36CgqSGDFK8pChUdQXFyKIhpMBY";
         $response = file_get_contents($url);
        
         $output = json_decode($response);
@@ -216,6 +216,27 @@ class Helper extends CActiveRecord {
           if($result=="1 m"){
               $result = "0 m";
           }
+        }else{
+            $result=0;
+        }
+        
+        return $result;
+    }
+    
+    public static function getLocationDistance_pickup($params) {
+        
+        $addressFrom = preg_replace('/\s+/', '+', str_replace(array("\r\n", "\r", "\n"), ',', trim($params[0])));
+        $addressTo = preg_replace('/\s+/', '+', str_replace(array("\r\n", "\r", "\n"), ',', trim($params[1])));
+        $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$addressFrom&destinations=$addressTo&key=AIzaSyA7IZt-36CgqSGDFK8pChUdQXFyKIhpMBY";
+        $response = file_get_contents($url);
+        
+        $output = json_decode($response);
+        //echo "<pre>";print_r($output);die;
+        if($output->rows[0]->elements[0]){
+            $result=$output->rows[0]->elements[0]->distance->text;
+            if($result=="1 m"){
+                $result = "0 m";
+            }
         }else{
             $result=0;
         }
