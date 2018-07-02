@@ -47,6 +47,10 @@ $('.search-form form').submit(function(){
 <div class="box">
     <div class="box-body">
 <h1>Manage Notification list</h1>
+<div class="alert alert-success" id="custom_success" style="display:none;">
+	<i class="fa fa-check" aria-hidden="true"></i> 
+        Notification has been successfully updated and closed !
+</div>
 <?php //echo CHtml::link('<i class="fa fa-plus" aria-hidden="true"></i> Add New', $this->createUrl('feedback/create'), array('class' => 'btn btn-primary pull-right btn-sm view-btn')); ?>
 <?php if (Yii::app()->user->hasFlash('success')): ?>
     <div class="alert alert-success">
