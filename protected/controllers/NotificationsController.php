@@ -36,7 +36,7 @@ class NotificationsController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete','custom_notifications','Createcustom','LoadRolesBasedUsers','SubmitPush','Custom_render'),
+				'actions'=>array('admin','delete','custom_notifications','Createcustom','LoadRolesBasedUsers','SubmitPush','StatusChange','Custom_render','Updatecommentform','Updatereplay'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -223,6 +223,52 @@ class NotificationsController extends Controller
 	            </select>
 	        <?php }else{
 	            echo "<label style='float:left' for='Notification_user_id' class='required'>User <span class='required'>*</span></label><select class='form-control select2' multiple='multiple' data-placeholder='Select a User'></select>";
+	        }
+	    }
+	}
+	
+	public function actionUpdatecommentform(){
+	    $this->layout=false;
+	    $type = $_POST['type'];
+	    if($_POST['id']){
+	        $model = $this->loadModel($_POST['id']);
+	        $this->render('comment_form',array('model'=>$model,'type'=>$type));
+	    }
+	}
+	
+	public function actionStatusChange($id){
+	    $model = $this->loadModel($id);
+	    if($model->status=="Y"){
+	        $model->status="N";
+	        $status_text = "Notification has been re-opened, Executive will contact soon..!";
+	    }else{
+	        $model->status = "Y";
+	        $status_text = "Notification has been closed";
+	    }
+	    if ($model->save(false)) {
+	        Yii::app()->user->setFlash('success', $status_text);
+	        $this->redirect(array('notifications'));
+	    } else {
+	        $msg    = $model->getErrors();
+	        foreach ($msg as $message) {
+	            Yii::app()->user->setFlash('error', $message[0]);
+	            break;
+	        }
+	        $this->redirect(array('notifications'));
+	    }
+	}
+	
+	public function actionUpdatereplay(){
+	    if($_POST){
+	        $model = Notifications::model()->findByPk($_POST['Notifications']['id']);
+            $model->comments = $_POST['Notifications']['comments'];
+            $model->status = "Y";
+	        if($model->save(false)){
+	            echo "1";
+	        }else{
+	            
+	            echo "0";
+	            var_dump($model->getErrors());
 	        }
 	    }
 	}

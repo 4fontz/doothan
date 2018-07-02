@@ -124,4 +124,16 @@ class Notifications extends CActiveRecord
 	public function ViewMore($data){
 	    echo '<a href="javascript:void(0)" id="'.$data->notification.'" data-toggle="modal" data-target="#myModal" class="btn btn-info btn-xs" onClick="show_more(this)">Show More</a>';
 	}
+	public function AddComments($data){
+	    $comments_details = ( strlen($data->comments) > 30
+	        ? CHtml::tag("span", array("title"=>$data->comments), CHtml::encode(substr($data->comments, 0, 30)) . "...")
+	        : CHtml::encode($data->comments)
+	        );
+	    if($comments_details==NULL){
+	        $comments = 'Click here to update the comment';
+	    }else{
+	        $comments = $comments_details;
+	    }
+	    echo '<a href="javascript:void(0)" id="'.$data->id.'" data-toggle="modal" data-target="#myModal" onClick="show_comment_form(this)">'.$comments.'</a>';
+	}
 }

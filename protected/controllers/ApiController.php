@@ -1886,6 +1886,81 @@ class ApiController extends Controller {
              throw $e;
          }
      }
+     
+     public function actionFindDoothans(){
+         ini_set('max_execution_time', 300000); //300 seconds = 5 minutes
+         $requestList = Request::model()->findAllByAttributes(array('doothan_id'=>0));
+         $settings = Settings::model()->find();
+         if(count($requestList)>0){
+             foreach($requestList as $request){
+                 $request_details = Request::model()->findByPk($request->id);
+                 $dropbox_address  = UserAddress::model()->findByAttributes(array('user_id'=>$request_details->dropbox_id));
+                 $dropbox_pin_code = $dropbox_address->postal_code;
+                 $sql = 'SELECT user.id as us_id,user.first_name,user.phone,user.account_status,user.email,user.last_name,user.current_location,address.postal_code,user.current_city,address.city from `users` as user left join `user_address` as address on user.id=address.user_id where user.member_type="doothan" and user.status=2 and user.account_status="APPROVED" and address.district='."'$dropbox_address->district'";
+                 $list_content=Yii::app()->db->createCommand($sql)->queryAll(); 
+                 foreach($list_content as $list_data) {
+                     $Doothan_pin_code = ($list_data['current_location']!='')?$list_data['current_location']:$list_data['postal_code'];
+                     $Doothan_city = ($list_data['current_city']!='')?$list_data['current_city']:$list_data['city'];
+                     $params = array($Doothan_pin_code,$dropbox_pin_code);
+                     //print_r($params);die;
+                     $doothan_dropbox_distance = Helper::getLocationDistance($params);
+                     $doothan_pickup_dist_param = array($Doothan_pin_code,$request->to_pincode);
+                     $pickup_doothan_distance = Helper::getLocationDistance($doothan_pickup_dist_param);
+                     if(intval($doothan_dropbox_distance)<=intval($settings->minimum_km)){
+                         //echo $doothan_dropbox_distance;die;
+//                          $doothan_charge = $pickup_doothan_distance*$settings->default_distance_charge+5;echo number_format((float)$amount_data, 2, '.', '');
+//                          $doothanPac = new DoothanList;
+//                          $doothanPac->request_id = $request->id;
+//                          $doothanPac->doothan_id = $list_data["us_id"];
+//                          $doothanPac->distance_to_dropbox = $doothan_dropbox_distance;
+//                          $doothanPac->distance_to_pickup = $pickup_doothan_distance;
+//                          $doothanPac->created_at = date('y-m-d:h-i-s');
+//                          $doothanPac->doothan_charge = $doothan_charge;
+//                          if($doothanPac->save(false)){
+//                              echo "saved";
+//                          }else{
+//                              echo "not saved";die;
+//                          }
+                         echo $request->id."</br>".$Doothan_pin_code."</br>".$dropbox_pin_code."</br>".$pickup_doothan_distance."</br>";
+                     }
+                 }die;
+             }
+         }
+     }
+     
+     public function actionCHeckEmpty(){
+         $request_details = Request::model()->findByPk(10);
+         $dropbox_address  = UserAddress::model()->findByAttributes(array('user_id'=>$request_details->dropbox_id));
+         $dropbox_pin_code = $dropbox_address->postal_code;
+         $sql = 'SELECT user.id as us_id,user.first_name,user.phone,user.account_status,user.email,user.last_name,user.current_location,address.postal_code,user.current_city,address.city from `users` as user left join `user_address` as address on user.id=address.user_id where user.member_type="doothan" and user.status=2 and user.account_status="APPROVED" and address.district='."'$dropbox_address->district'";
+         $list_content=Yii::app()->db->createCommand($sql)->queryAll();
+         foreach($list_content as $list_data) {
+             $Doothan_pin_code = ($list_data['current_location']!='')?$list_data['current_location']:$list_data['postal_code'];
+             $Doothan_city = ($list_data['current_city']!='')?$list_data['current_city']:$list_data['city'];
+             $params = array($Doothan_pin_code,$dropbox_pin_code);
+             //print_r($params);die;
+             $doothan_dropbox_distance = Helper::getLocationDistance($params);
+             $doothan_pickup_dist_param = array($Doothan_pin_code,$request->to_pincode);
+             $pickup_doothan_distance = Helper::getLocationDistance($doothan_pickup_dist_param);
+             if(intval($doothan_dropbox_distance)<=intval($settings->minimum_km)){
+                 //echo $doothan_dropbox_distance;die;
+                 $doothan_charge = $pickup_doothan_distance*$settings->default_distance_charge+5;echo number_format((float)$amount_data, 2, '.', '');
+                 //                          $doothanPac = new DoothanList;
+                 //                          $doothanPac->request_id = $request->id;
+                 //                          $doothanPac->doothan_id = $list_data["us_id"];
+                 //                          $doothanPac->distance_to_dropbox = $doothan_dropbox_distance;
+                 //                          $doothanPac->distance_to_pickup = $pickup_doothan_distance;
+                 //                          $doothanPac->created_at = date('y-m-d:h-i-s');
+                 //                          $doothanPac->doothan_charge = $doothan_charge;
+                 //                          if($doothanPac->save(false)){
+                 //                              echo "saved";
+                 //                          }else{
+                 //                              echo "not saved";die;
+                 //                          }
+                 echo $doothan_dropbox_distance."</br>";
+             }
+         }
+     }
     /*public function actionScrptFile(){
         ini_set('max_execution_time', 300000); //300 seconds = 5 minutes
         for($i=1232;$i<=5000;$i++){

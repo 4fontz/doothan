@@ -19,23 +19,29 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+<!-- <div id="myModal" class="modal fade" role="dialog"> -->
+<!--   <div class="modal-dialog"> -->
 
     <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Notification Text</h4>
-      </div>
-      <div class="modal-body">
+<!--     <div class="modal-content"> -->
+<!--       <div class="modal-header"> -->
+<!--         <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+<!--         <h4 class="modal-title">Notification Text</h4> -->
+<!--       </div> -->
+<!--       <div class="modal-body"> -->
         
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+<!--       </div> -->
+<!--       <div class="modal-footer"> -->
+<!--         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+<!--       </div> -->
+<!--     </div> -->
 
+<!--   </div> -->
+<!-- </div> -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content" id="modal-content">
+    </div>
   </div>
 </div>
 <div class="box">
@@ -113,17 +119,36 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
                 'htmlOptions' => array('style' => 'width: 15%'),
             ),
             array(
+            'name'=>'status',
+            'type'=>'raw',
+            'value'=> function ($data){
+            if($data->status=='Y')
+                    return "<a class='btn btn-success btn-xs' id='sm_".$data->id."' href='" . Yii::app()->createAbsoluteUrl('notifications/statusChange', array('id' => $data->id)) . "'>Closed</a>";
+                else if($data->status=='N')
+                    return "<a class='btn btn-warning btn-xs' id='sm_".$data->id."' href='" . Yii::app()->createAbsoluteUrl('notifications/statusChange', array('id' => $data->id)) . "'>Open</a>";
+            },
+            'htmlOptions' => array('style' => 'width: 4%')
+            ),
+            array(
                 'name' => 'created_at',
                 'value' => array($model,'userJoinedDate'),
                 // 'value'=>'Yii::app()->dateFormatter->format("m/d/y",$data->created)',
                 'htmlOptions' => array('style' => 'width: 15%')
             ),
-            array(
+            /*array(
                 'name'=>'comments',
                 'header'=> 'Action',
                 'type' => 'raw',
                 'filter'=>'',
                 'value'=> array($model,'ViewMore'),
+                'htmlOptions' => array('style' => 'width: 6%'),
+            ),*/
+            array(
+                'name'=>'replay',
+                'header'=> 'Comments',
+                'type' => 'raw',
+                'filter'=>false,
+                'value'=> array($model,'AddComments'),
                 'htmlOptions' => array('style' => 'width: 6%'),
             ),
     ),
@@ -139,6 +164,23 @@ $this->widget('ext.yiisortablemodel.widgets.SortableCGridView', array(
        
     });
 
+    function show_comment_form(param){
+        $('#modal-content').html(" ");
+    	var id=$(param).attr('id');
+    	type="0";
+    	$.ajax({
+    		type:'POST',
+    		dataType:'html',
+    		data:{'id':id,'type':type},
+    		url:'<?php echo Yii::app()->createAbsoluteUrl("Notifications/Updatecommentform"); ?>',
+    		success:function(response){
+    			$('#modal-content').html(response);
+    		},error: function(jqXHR, textStatus, errorThrown) {
+    			//window.location.reload();
+            }
+    	});
+    }
+       
 
 function show_more(param){
 	text = $(param).attr('id');

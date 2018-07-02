@@ -6,7 +6,7 @@ $dropboxCount = Users::model()->countByAttributes(array('account_status'=>'CALL_
 $requestCount = Request::model()->countByAttributes(array('status'=>'Request Placed'));
 //$openfeedbackCount = Feedback::model()->countByAttributes(array('type'=>'0','status'=>'N'));
 $opencallbacks = Feedback::model()->countByAttributes(array('type'=>'1','status'=>'N'));
-$notificationCount = Notifications::model()->count();
+$notificationCount = Notifications::model()->countByAttributes(array('status'=>'N'));
 $criteria = new CDbCriteria;
 $criteria->condition = "status !='success'";
 //print_r($criteria);die;
@@ -94,7 +94,7 @@ $loggedUserDetails = Admin::model()->findByPk(Yii::app()->user->getId());
         	<i class="fa fa-bell" aria-hidden="true"></i> 
         	<span>Alerts</span>
         	<span class="pull-right-container">
-              <small class="label pull-right bg-red"><?php echo ($notificationCount>0)?$notificationCount:'';?></small>
+              <small class="label pull-right bg-red" id="noti_count"><?php echo ($notificationCount>0)?$notificationCount:'';?></small>
           	</span>
     	</a>
     </li>
