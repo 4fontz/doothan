@@ -25,7 +25,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
     	<?php $this->widget('bootstrap.widgets.TbButton', array(
     		'buttonType'=>'submit',
     		'type'=>'primary',
-    		'label'=>$model->isNewRecord ? 'create' : 'save',
+    		'label'=>'Update',
     	)); ?>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	</div>
