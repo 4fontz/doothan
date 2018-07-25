@@ -126,7 +126,7 @@ class Helper extends CActiveRecord {
 
     public static function getCoordinates($address) {
         $address = preg_replace('/\s+/', '+', str_replace(array("\r\n", "\r", "\n"), ',', trim($address)));
-        $url = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=$address&key=AIzaSyA7IZt-36CgqSGDFK8pChUdQXFyKIhpMBY";
+        $url = "https://maps.google.com/maps/api/geocode/json?sensor=false&address=$address&key=AIzaSyCo5F-SOvu8_wVKVpPSl_3_t4V9fbSHdwA";
         $response = file_get_contents($url);
         $output = json_decode($response);
         if(!empty($output->results)){
@@ -207,9 +207,11 @@ class Helper extends CActiveRecord {
        
         $addressFrom = preg_replace('/\s+/', '+', str_replace(array("\r\n", "\r", "\n"), ',', trim($params[0])));
         $addressTo = preg_replace('/\s+/', '+', str_replace(array("\r\n", "\r", "\n"), ',', trim($params[1])));
-        $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$addressFrom&destinations=$addressTo&key=AIzaSyA7IZt-36CgqSGDFK8pChUdQXFyKIhpMBY";
+        
+        // correct key
+        $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$addressFrom&destinations=$addressTo&key=AIzaSyCeg90O_GFekssgvsBcQNfLhPEyKd-xWyM";
         $response = file_get_contents($url);
-       
+        //echo "<pre>";print_r($response);die;
         $output = json_decode($response);
         if($output->rows[0]->elements[0]){
           $result=$output->rows[0]->elements[0]->distance->text;  
@@ -227,7 +229,7 @@ class Helper extends CActiveRecord {
         
         $addressFrom = preg_replace('/\s+/', '+', str_replace(array("\r\n", "\r", "\n"), ',', trim($params[0])));
         $addressTo = preg_replace('/\s+/', '+', str_replace(array("\r\n", "\r", "\n"), ',', trim($params[1])));
-        $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$addressFrom&destinations=$addressTo&key=AIzaSyA7IZt-36CgqSGDFK8pChUdQXFyKIhpMBY";
+        $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$addressFrom&destinations=$addressTo&key=AIzaSyCo5F-SOvu8_wVKVpPSl_3_t4V9fbSHdwA";
         $response = file_get_contents($url);
         
         $output = json_decode($response);
