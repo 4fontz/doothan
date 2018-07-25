@@ -112,7 +112,9 @@ class AdminController extends Controller
     		    date_default_timezone_set('Asia/Kolkata');
     			$model->attributes=$_POST['Admin'];
     			$first_name = $_POST['Admin']['first_name'];
-    			$last_name = $_POST['Admin']['last_name'];
+				$last_name = $_POST['Admin']['last_name'];
+				$password = md5($_POST['Admin']['password']);
+				$model->password = $password;
     			if($model->save(false)){
     			    Yii::app()->user->setFlash('success', "Admin ".$first_name.' '.$last_name." succesfully updated");
     			    $message = "Admin ".$first_name.' '.$last_name." profile updated ";

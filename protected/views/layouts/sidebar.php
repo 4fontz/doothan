@@ -4,13 +4,12 @@ $requestersCount = Users::model()->countByAttributes(array('member_type'=>'reque
 $doothanCount = Users::model()->countByAttributes(array('account_status'=>'CALL_VERIFICATION_PENDING','member_type'=>'doothan'));
 $dropboxCount = Users::model()->countByAttributes(array('account_status'=>'CALL_VERIFICATION_PENDING','member_type'=>'dropbox'));
 $requestCount = Request::model()->countByAttributes(array('status'=>'Request Placed'));
-//$openfeedbackCount = Feedback::model()->countByAttributes(array('type'=>'0','status'=>'N'));
-$opencallbacks = Feedback::model()->countByAttributes(array('type'=>'1','status'=>'N'));
-$notificationCount = Notifications::model()->countByAttributes(array('status'=>'N'));
+$opencallbacks = Feedback::model()->countByAttributes(array('type'=>'1','status'=>'N')); // callback
+$notificationCount = Notifications::model()->countByAttributes(array('status'=>'N')); // Alerts
 $criteria = new CDbCriteria;
 $criteria->condition = "status !='success'";
 //print_r($criteria);die;
-$custom_noti_count = Notification::model()->count($criteria);
+$custom_noti_count = Notification::model()->count($criteria); // Custom notification
 $loggedUserDetails = Admin::model()->findByPk(Yii::app()->user->getId());
 ?>
 <aside class="main-sidebar">
